@@ -20,8 +20,7 @@ question:
 
 game: 
   * methods: 
-    * generate math question
-    * prompt player
+    * prompt player with a question and return the answer
     * assess input and update lives if necessary
     * end game if lives = 0 now, else toggle current_player
   * data: current_player
