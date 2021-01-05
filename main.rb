@@ -23,7 +23,6 @@ class Game
     while game_over == false do
       # Instantiate new question and new printout
       q = Question.new
-      # prnt = Printouts.new
 
       # Announce new turn
       self.prnt.linebreak_message(self.cur_player.name)
