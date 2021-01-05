@@ -4,24 +4,31 @@
 
 ## Breakdown of classes
 player: 
-  * variable id = 0
   * data:
-    * initialize 3 'lives' and player id
+    * id
+    * name
+    * lives left
   * method:
-    * player id += 1
+    * lose a life
 
 question:
   * data:
-    * initialize 2 random numbers and placeholder for answer
+    * initialize 2 random numbers and answer (equal to their sum)
   * methods:
     * generate question (requires the 2 random numbers)
-    * calculate answer and store as answer
     * check answer(input: player's_attempt, output: true/false)
 
-game: 
+printouts: 
   * methods: 
     * prompt player with a question and return the answer
-    * assess input and update lives if necessary
-    * end game if lives = 0 now, else toggle current_player
-  * data: current_player
+    * put response to player's answer (correct / incorrect)
+    * put number of lives left
+    * put linebreak messages
+    * put winning messages
 
+main:
+  * data: 
+    * initialize with 2 players (instances of Player)
+  * methods:
+    * toggle current player
+    * gameplay method (which calls for Question.new every loop, and lots of calls to Printouts)

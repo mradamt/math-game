@@ -5,12 +5,13 @@ require './printouts'
 
 class Game
   attr_accessor :cur_player
-  attr_reader :player1, :player2
+  attr_reader :player1, :player2, :prnt
 
   def initialize
     @player1 = Player.new(1)
     @player2 = Player.new(2)
     @cur_player = self.player1
+    @prnt = Printouts.new
   end
 
   def toggle_current_player
@@ -22,22 +23,22 @@ class Game
     while game_over == false do
       # Instantiate new question and new printout
       q = Question.new
-      prnt = Printouts.new
+      # prnt = Printouts.new
 
       # Announce new turn
-      prnt.linebreak_message(self.cur_player.name)
+      self.prnt.linebreak_message(self.cur_player.name)
       
       # Prompt player with question, and save answer
-      ans = prnt.ask_question(q.build_question)
+      ans = self.prnt.ask_question(q.build_question)
 
       ans_bool = q.correct?(ans)
       # Tell user if their answer is correct
-      prnt.respond_to_answer(ans_bool)
+      self.prnt.respond_to_answer(ans_bool)
       
       # If answer incorrect subtract 1 life and print lives remaining
       if !ans_bool
-        self.cur_player.lives -= 1
-        prnt.score(self.cur_player.lives)
+        self.cur_player.lose_a_life
+        self.prnt.score(self.cur_player.lives)
       end
       
       # End the game if player's score is now 0
@@ -50,8 +51,8 @@ class Game
     end
     
     # Print out winner, and 'game over' message
-    prnt.linebreak_message("Game Over")
-    prnt.winning_message(cur_player.name)
+    self.prnt.linebreak_message("Game Over")
+    self.prnt.winning_message(cur_player.name)
   end
 end
 

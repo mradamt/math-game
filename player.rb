@@ -7,4 +7,8 @@ class Player
     @name = "Player#{@id}"
     @lives = 3
   end
+
+  def lose_a_life
+    self.lives -= 1
+  end
 end
